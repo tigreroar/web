@@ -1,0 +1,208 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Lora:wght@400;500;600&family=Inter:wght@400;500&display=swap");
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+==========================================================================
+【AI HANDOVER NOTE】
+1. DESIGN PHILOSOPHY:
+   - Atmosphere-First Real Estate Luxury: This design system embodies trust, professionalism, and aspirational living. Inspired by CloudCMA's clean presentation style, we elevate it with sophisticated typography and a refined color palette that speaks to high-end real estate marketing.
+   - Visual Style: Neo-minimalism meets Real Estate Elegance. Clean white backgrounds provide breathing room for property photography to shine. Gold accents (--brand) convey prestige without ostentation. The colorful accent bar (chart colors) adds energy and visual interest while maintaining professional credibility.
+   - Rationale: Real estate presentations must balance emotional appeal with data-driven credibility. This system uses generous whitespace, clear hierarchy, and warm gold accents to create trust while letting property imagery be the hero.
+
+2. TYPOGRAPHY:
+   - Sans (Montserrat): A geometric sans-serif with excellent readability and a modern, upscale feel. Its clean letterforms convey professionalism while remaining approachable. Perfect for headings, agent names, and body copy in real estate contexts.
+   - Serif (Lora): Used sparingly for elegant section headers or testimonial quotes. Adds warmth and sophistication, particularly effective for "Meet Your Agent" biographical content.
+   - Mono (Inter): Reserved for data points, statistics, and pricing information where clarity and precision are paramount.
+
+3. COLOR SYSTEM:
+   - Brand Primary (Gold/Amber #C9A84C): Hue ~45° in OKLCH space. This warm metallic tone conveys luxury, success, and trust—essential qualities in real estate. Maps to --primary for CTAs and --accent for highlights.
+   - Colorful Accent Bar: The signature CloudCMA rainbow (red, yellow, green, blue, orange) is preserved in chart_1 through chart_5. These vibrant segments add personality and visual energy to the cover page.
+   - Semantic Colors: Success (green, hue ~150°) for positive stats, Warning (amber, hue ~50°) for time-sensitive actions, Destructive (red, hue ~15°) used minimally for urgent notices.
+   - Neutral Palette: Pure white background (L=0.99) ensures photography pops. Foreground text is deep charcoal (L=0.20) for maximum readability. Muted tones (L=0.94 light, L=0.25 dark) for secondary UI elements.
+
+4. USAGE GUIDE:
+   - Layout Type: Full-width hero images with centered content containers (max-width: 1200px). Each section uses generous vertical padding (80-120px) to create breathing room.
+   - Special Effects: Subtle drop shadows on cards (0 2px 8px rgba(0,0,0,0.08)) for depth. Gold accent borders (2px solid --primary) on featured content. Hover states use gentle scale transforms (1.02) and shadow elevation.
+   - Photography Treatment: Hero images span full viewport width. Interior shots use 2-3 column grids with 16px gaps. All images have subtle border-radius (--radius) for polish.
+   - Typography Scale: H1 (48-56px bold), H2 (36-40px semibold), H3 (24-28px medium), Body (16-18px regular). Line-height: 1.6 for body, 1.2 for headings.
+   - Color Application: Gold (--primary) for agent names, CTAs, and key stats. Chart colors for the top accent bar only. Keep 90% of the design neutral (white/charcoal) to maintain sophistication.
+   - Accessibility: All text meets WCAG AA standards. Gold on white has 4.8:1 contrast. Dark mode (if needed) inverts to cream text on deep navy background while preserving gold accents.
+==========================================================================
+*/
+
+:root {
+  /* Typography */
+  --font-sans: Montserrat, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-mono: Inter, 'SF Mono', Consolas, monospace;
+  
+  /* Radius */
+  --radius: 0.5rem;
+
+  /* Core UI Tokens */
+  --background: oklch(0.99 0 0);
+  --foreground: oklch(0.20 0.01 270);
+  --card: oklch(0.98 0 0);
+  --card-foreground: oklch(0.20 0.01 270);
+  --popover: oklch(0.99 0 0);
+  --popover-foreground: oklch(0.20 0.01 270);
+  --primary: oklch(0.65 0.12 65);
+  --primary-foreground: oklch(0.99 0 0);
+  --secondary: oklch(0.94 0.01 270);
+  --secondary-foreground: oklch(0.25 0.01 270);
+  --muted: oklch(0.96 0.005 270);
+  --muted-foreground: oklch(0.50 0.01 270);
+  --accent: oklch(0.70 0.14 55);
+  --accent-foreground: oklch(0.99 0 0);
+  --destructive: oklch(0.55 0.22 15);
+  --destructive-foreground: oklch(0.99 0 0);
+  --border: oklch(0.90 0.005 270);
+  --input: oklch(0.92 0.005 270);
+  --ring: oklch(0.65 0.12 65);
+  
+  /* Chart Tokens */
+  --chart-1: oklch(0.55 0.24 15);
+  --chart-2: oklch(0.80 0.18 95);
+  --chart-3: oklch(0.60 0.20 150);
+  --chart-4: oklch(0.60 0.22 240);
+  --chart-5: oklch(0.65 0.20 45);
+  
+  /* Sidebar Tokens */
+  --sidebar: oklch(0.97 0.005 270);
+  --sidebar-foreground: oklch(0.25 0.01 270);
+  --sidebar-primary: oklch(0.65 0.12 65);
+  --sidebar-primary-foreground: oklch(0.99 0 0);
+  --sidebar-accent: oklch(0.94 0.01 270);
+  --sidebar-accent-foreground: oklch(0.25 0.01 270);
+  --sidebar-border: oklch(0.90 0.005 270);
+  --sidebar-ring: oklch(0.65 0.12 65);
+}
+
+.dark {
+  --background: oklch(0.15 0.01 270);
+  --foreground: oklch(0.92 0.01 65);
+  --card: oklch(0.17 0.01 270);
+  --card-foreground: oklch(0.92 0.01 65);
+  --popover: oklch(0.15 0.01 270);
+  --popover-foreground: oklch(0.92 0.01 65);
+  --primary: oklch(0.70 0.14 60);
+  --primary-foreground: oklch(0.15 0.01 270);
+  --secondary: oklch(0.25 0.02 270);
+  --secondary-foreground: oklch(0.88 0.01 65);
+  --muted: oklch(0.22 0.015 270);
+  --muted-foreground: oklch(0.60 0.02 270);
+  --accent: oklch(0.75 0.16 55);
+  --accent-foreground: oklch(0.15 0.01 270);
+  --destructive: oklch(0.60 0.25 20);
+  --destructive-foreground: oklch(0.95 0.01 65);
+  --border: oklch(0.28 0.02 270);
+  --input: oklch(0.25 0.02 270);
+  --ring: oklch(0.70 0.14 60);
+  
+  /* Chart Tokens */
+  --chart-1: oklch(0.60 0.26 18);
+  --chart-2: oklch(0.82 0.20 100);
+  --chart-3: oklch(0.65 0.22 155);
+  --chart-4: oklch(0.65 0.24 245);
+  --chart-5: oklch(0.70 0.22 48);
+  
+  /* Sidebar Tokens */
+  --sidebar: oklch(0.18 0.015 270);
+  --sidebar-foreground: oklch(0.88 0.01 65);
+  --sidebar-primary: oklch(0.70 0.14 60);
+  --sidebar-primary-foreground: oklch(0.15 0.01 270);
+  --sidebar-accent: oklch(0.25 0.02 270);
+  --sidebar-accent-foreground: oklch(0.88 0.01 65);
+  --sidebar-border: oklch(0.28 0.02 270);
+  --sidebar-ring: oklch(0.70 0.14 60);
+}
+
+@theme inline {
+  /* Shadcn Core Mapping */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* Charts Mapping */
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+
+  /* Sidebar Mapping */
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  /* Typography */
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
+
+  /* Radius */
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  html {
+    @apply scroll-smooth antialiased;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans min-h-screen;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-semibold tracking-tight;
+  }
+
+  code, pre {
+    @apply font-mono;
+  }
+
+  ::selection {
+    @apply bg-primary/20 text-primary;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-muted-foreground/20 rounded-full hover:bg-muted-foreground/40;
+  }
+}
